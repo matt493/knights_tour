@@ -1,15 +1,16 @@
 import time
 import os
-SIZE = 5
+
+SIZE = int(input("Enter SIZE for the board: "))
 STEP = 0
+
 class Board:
 
     empty = ' [{}]'
     traversed = 'V'
     horse = 'H' 
-    # counter = SIZE * SIZE
 
-    def __init__(self,x, y):
+    def __init__(self,x, y):    # constructor
         self.x = x
         self.y = y
 
@@ -17,16 +18,6 @@ class Board:
         self.is_traversed = False
 
         self.step = 0
-
-    # def setTraversed(self):
-    #     self.is_traversed = True
-    #     self.step = Board.step
-
-    # def unsetTraversed(self):
-    #     self.is_traversed = False
-    #     # self.color = Board.empty
-    #     self.step = 0
-    #     self.color = Board.empty.format(' ')
     
     def getStep(self):
         if self.step <= 9:
@@ -35,7 +26,7 @@ class Board:
             self.color = Board.empty.format(self.step)
         return self.color
 
-    def setHorse(self):
+    def setKnight(self):
         global STEP
         self.is_traversed = True
 
@@ -48,14 +39,15 @@ class Board:
         return self.is_traversed
     pass
 
-BOARD = [[ Board(j,i) for i in range(1, SIZE+1) ] for j in range(1, SIZE+1)]
+# BOARD = [[ Board(j,i) for i in range(1, SIZE+1) ] for j in range(1, SIZE+1)]
+BOARD = [[ Board(j,i) for i in range(SIZE) ] for j in range(SIZE)]
 
 def drawBoard():
     os.system('cls')
     for col in BOARD:
         for row in col:
             print( row.color, end = "")
-            # print('(%d,%d)' % (row.x, row.y), end = "")
+            # print('(%d,%d)' % (row.x, row.y), end = "")   # prints as co-ordinate system
         print('\n')
     # input('Press Enter..')
 
@@ -65,7 +57,6 @@ def drawNumberedBoard():
         for row in col:
             print( row.getStep(), end = "")
         print('\n')
-
 
 def getMinAccessible(availableMoves : list):
     moves = []
@@ -99,7 +90,8 @@ def getMinAccessible(availableMoves : list):
 def explore(cell : Board):
     global STEP
 
-    cell.setHorse() #set the current cell as traversed and give the current cell a step number
+    #set the current cell as knight's position, set traversed and give the current cell a step number
+    cell.setKnight()
     # input('Press Enter..')
     time.sleep(0.3)
     drawBoard()
@@ -109,7 +101,7 @@ def explore(cell : Board):
         print("NO MORE MOVES!")
         return None
 
-    elif len(availableMoves) == 1:
+    elif len(availableMoves) == 1:  # condition when only one move is available
         print("AVAILABLE MOVE:", end = '')
         for each in availableMoves:
             print((each.x,each.y), end = ' ')
@@ -117,7 +109,7 @@ def explore(cell : Board):
 
         explore(availableMoves[0])
 
-    elif len(availableMoves) > 1:
+    elif len(availableMoves) > 1:   # condition when more than one moves are available
         print("AVAILABLE MOVES:", end = '')
         for each in availableMoves:
             print((each.x,each.y), end = ' ')
@@ -134,8 +126,10 @@ def explore(cell : Board):
 
 def getValidMoves(cell : Board):
 
-    x = cell.x -1
-    y = cell.y -1
+
+    # adjusting the cell co-ordinates to take the offset into account
+    x = cell.x 
+    y = cell.y 
 
     validMoves = [
     (x-1, y-2),
@@ -147,7 +141,7 @@ def getValidMoves(cell : Board):
     (x+2, y-1),
     (x+1, y-2)
     ]
-    # print('VALIDS: ', validMoves)
+    # print('VALID MOVES: ', validMoves)
 
     availableMoves = []
     for i in range(0, SIZE):
@@ -155,7 +149,6 @@ def getValidMoves(cell : Board):
             if (i,j) in validMoves:
                 if not BOARD[i][j].isTraversed():
                     availableMoves.append(BOARD[i][j])
-
 
     # print('availableMoves:')
     # for each in availableMoves:
@@ -170,11 +163,11 @@ def getValidMoves(cell : Board):
 
 def main():
 
-    x = int(input("Enter X :")) - 1
-    y = int(input("Enter Y :")) - 1
+    x = int(input("Enter startX :")) - 1
+    y = int(input("Enter startY :")) - 1
 
     explore(BOARD[x][y])
-    input('Press Enter..')
+    input('Press ENTER to see final output...')
     drawNumberedBoard()
 
 if __name__ == '__main__':
