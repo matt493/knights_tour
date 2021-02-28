@@ -2,7 +2,7 @@
 
 ## Constraints
 
-For an N x N matrix, a successfull tour is only possible if:
+For an N x N matrix, a successful tour is only possible if:
 
 * N >= 6 and N is even.
 * If N = 5, only the start positions of diagonal element are guranteed to produce a successfull tour.
