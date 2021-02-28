@@ -7,6 +7,10 @@ For an N x N matrix, a successful tour is only possible if:
 * N >= 6 and N is even.
 * If N = 5, only the start positions of diagonal element are guranteed to produce a successfull tour.
 
+## Valid Moves
+
+![validMoves](https://raw.githubusercontent.com/matt493/knights_tour/master/Moves.png)
+
 ## Algorithm
 
 1. Set H to be a random initial position on the board
