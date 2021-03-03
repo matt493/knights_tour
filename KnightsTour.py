@@ -5,7 +5,7 @@ SIZE = 0
 STEP = 0
 AUTO = True
 DEBUG = False
-
+SPEED = 0.3
 os.system('cls')
 
 while SIZE <= 0: SIZE = int(input("Enter SIZE for the board (SIZE > 0): "))     #reading a +ve int as board size
@@ -96,7 +96,7 @@ def explore(cell : Board):
     cell.setKnight()
     
     if AUTO:
-        time.sleep(0.3)
+        time.sleep(SPEED)
     else:
         input('Press [ENTER]')
     drawBoard()
