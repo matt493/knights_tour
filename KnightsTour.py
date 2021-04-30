@@ -4,7 +4,7 @@ import os
 SIZE = 0
 STEP = 0
 AUTO = True
-DEBUG = False
+DEBUG = True
 SPEED = 0.3
 os.system('cls')
 
