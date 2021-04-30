@@ -13,10 +13,10 @@ For an N x N matrix, a successful tour is only possible if:
 
 ## Algorithm
 
-1. Set H to be a random initial position on the board
-2. Mark the board at H with the move number “1”
+1. Set K to be a random initial position on the board
+2. Mark the board at K with the move number “1”
 3. Do following for each move number from 2 to the number of squares on the board:
-   1. let S be the set of positions accessible from H.
-   2. Set H to be the position in S with minimum accessibility
-   3. Mark the board at H with the current move number
+   1. let S be the set of positions accessible from K.
+   2. Set K to be the position in S with minimum accessibility
+   3. Mark the board at K with the current move number
 4. Print the marked board, each square will be marked with the move number on which it is visited.
