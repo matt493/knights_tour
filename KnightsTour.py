@@ -14,7 +14,7 @@ class Board:
 
     empty = ' [{}]'
     traversed = 'V'
-    horse = 'H' 
+    horse = 'X' 
 
     def __init__(self,x, y):    # constructor
         self.x = x
